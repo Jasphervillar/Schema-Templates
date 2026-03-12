@@ -1,0 +1,40 @@
+<script type="application/ld+json">
+{
+  "_INSTRUCTIONS": {
+    "purpose": "Contact page schema markup template for dental practices",
+    "rules": [
+      "SCAN the contact page fully before filling anything",
+      "REMOVE any field that has no data available — never leave a placeholder empty",
+      "NEVER guess or fabricate any information — only use what is found on the site",
+      "name: use the exact page title tag of the contact page — check the browser tab title or meta title",
+      "description: use the meta description of the contact page — check page source or SEO settings",
+      "url: use the exact contact page URL — no trailing slash unless the site uses one consistently",
+      "@id: append #webpage to the contact page URL",
+      "about.@id: always point back to the homepage dentist entity by appending /#dentist to the homepage URL — this links the contact page to the main business entity",
+      "breadcrumb: always has 2 items — position 1 is always Home with the homepage URL, position 2 is the contact page name and URL",
+      "breadcrumb name: use the exact page name as it appears in the navigation menu of the site",
+      "mainEntityOfPage: always use the same value as url field",
+      "NO PLACEHOLDERS: the final output must have zero placeholders — every field must contain real data or be removed entirely",
+      "VALIDATE: check that all URLs are real and working, page title matches the actual contact page title, and the homepage @id URL is correct"
+    ]
+  },
+
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "@id": "{{CONTACT_PAGE_URL}}#webpage",
+  "name": "{{CONTACT_PAGE_META_TITLE}}",
+  "description": "{{CONTACT_PAGE_META_DESCRIPTION}}",
+  "url": "{{CONTACT_PAGE_URL}}",
+  "mainEntityOfPage": "{{CONTACT_PAGE_URL}}",
+  "about": {
+    "@id": "{{HOMEPAGE_URL}}/#dentist"
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{HOMEPAGE_URL}}/" },
+      { "@type": "ListItem", "position": 2, "name": "{{CONTACT_PAGE_NAV_NAME}}", "item": "{{CONTACT_PAGE_URL}}" }
+    ]
+  }
+}
+</script>
