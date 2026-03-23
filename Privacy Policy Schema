@@ -1,0 +1,54 @@
+<script type="application/ld+json">
+{
+  "_INSTRUCTIONS": {
+    "purpose": "Location and near-me page schema markup template for dental practices — use this for pages targeting specific cities, areas, or dentist near me searches",
+    "rules": [
+      "USE this template for any page with slugs like /dentist-near-me, /dentist-in-city, /city-dentist, /locations, or any geo-targeted landing page",
+      "SCAN the page fully before filling anything",
+      "REMOVE any field that has no data available — never leave a placeholder empty",
+      "NEVER guess or fabricate any information — only use what is found on the site",
+      "@type: always use WebPage for location and near-me pages — do not use LocalBusiness here since the homepage already handles that",
+      "name: use the exact meta title of the page — check page source or SEO settings — it usually contains the city and state",
+      "description: use the exact meta description — check page source or SEO settings — it usually references the city, services, and phone number",
+      "url: use the exact page URL — no trailing slash unless the site uses one consistently",
+      "@id: always append #webpage to the page URL",
+      "about.@id: always point back to the homepage dentist entity by appending /#dentist to the homepage URL — this links the location page to the main business entity",
+      "breadcrumb: always has 2 items — position 1 is always Home with the homepage URL, position 2 is the location page name and URL",
+      "breadcrumb name: use the exact readable page name — for example Dentist Near Me in Austin TX or Dentist in Fairfax VA — not the slug",
+      "mainEntityOfPage: always use the same value as the url field",
+      "inLanguage: always set to en unless the site is in another language",
+      "NO PLACEHOLDERS: the final output must have zero placeholders — every field must contain real data or be removed entirely",
+      "VALIDATE: check that all URLs are real and working, page title matches the actual page meta title, and the homepage @id URL is correct"
+    ]
+  },
+
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "{{PAGE_URL}}#webpage",
+  "name": "{{PAGE_META_TITLE}}",
+  "description": "{{PAGE_META_DESCRIPTION}}",
+  "url": "{{PAGE_URL}}",
+  "mainEntityOfPage": "{{PAGE_URL}}",
+  "inLanguage": "en",
+  "about": {
+    "@id": "{{HOMEPAGE_URL}}/#dentist"
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "{{HOMEPAGE_URL}}/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "{{READABLE_PAGE_NAME}}",
+        "item": "{{PAGE_URL}}"
+      }
+    ]
+  }
+}
+</script>
