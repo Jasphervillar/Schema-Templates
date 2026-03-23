@@ -1,0 +1,54 @@
+<script type="application/ld+json">
+{
+  "_INSTRUCTIONS": {
+    "purpose": "Standard page schema markup template for any unusual or unrecognized page type on a dental practice website",
+    "rules": [
+      "USE this template for any page that does not match homepage, contact, about, services, or blog templates",
+      "SCAN the page fully before filling anything — read the page title, slug, headings, and content",
+      "REMOVE any field that has no data available — never leave a placeholder empty",
+      "NEVER guess or fabricate any information — only use what is found on the site",
+      "@type: identify the correct schema type based on the page content using this logic:",
+      "  - Accessibility Statement page → use WebPage",
+      "  - Privacy Policy page → use WebPage",
+      "  - Terms and Conditions page → use WebPage",
+      "  - Team or Staff page → use AboutPage",
+      "  - FAQ page → use FAQPage",
+      "  - Location or Directions page → use LocalBusiness",
+      "  - Blog post or Article → use BlogPosting",
+      "  - Gallery or Photo page → use ImageGallery",
+      "  - Testimonials or Reviews page → use WebPage",
+      "  - Any other unrecognized page → default to WebPage",
+      "name: use the exact page meta title — check page source or SEO settings",
+      "description: use the exact page meta description — check page source or SEO settings",
+      "url: use the exact page URL — no trailing slash unless the site uses one consistently",
+      "@id: always append #webpage to the page URL",
+      "inLanguage: always set to en unless the site is in another language",
+      "about.@id: always point back to the homepage dentist entity by appending /#dentist to the homepage URL — this links the page to the main business entity",
+      "breadcrumb: always has at minimum 2 items — position 1 is always Home with the homepage URL, position 2 is this page — add more positions if the page is nested deeper in the site structure",
+      "breadcrumb name: use the exact page name as it appears in the navigation or page title",
+      "mainEntityOfPage: always use the same value as the url field",
+      "NO PLACEHOLDERS: the final output must have zero placeholders — every field must contain real data or be removed entirely",
+      "VALIDATE: check that all URLs are real and working, page title matches the actual page meta title, and the homepage @id URL is correct"
+    ]
+  },
+
+  "@context": "https://schema.org",
+  "@type": "{{IDENTIFIED_PAGE_TYPE}}",
+  "@id": "{{PAGE_URL}}#webpage",
+  "name": "{{PAGE_META_TITLE}}",
+  "description": "{{PAGE_META_DESCRIPTION}}",
+  "url": "{{PAGE_URL}}",
+  "mainEntityOfPage": "{{PAGE_URL}}",
+  "inLanguage": "en",
+  "about": {
+    "@id": "{{HOMEPAGE_URL}}/#dentist"
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{HOMEPAGE_URL}}/" },
+      { "@type": "ListItem", "position": 2, "name": "{{PAGE_NAV_NAME}}", "item": "{{PAGE_URL}}" }
+    ]
+  }
+}
+</script>
