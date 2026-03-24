@@ -1,0 +1,82 @@
+<script type="application/ld+json">
+{
+  "_INSTRUCTIONS": {
+    "purpose": "Individual service page schema markup template for dental practices — use this for specific service pages like teeth whitening, veneers, implants, invisalign, etc.",
+    "rules": [
+      "USE this template for every individual service page — pages with slugs like /services/teeth-whitening, /cosmetic-dentistry/veneers, /general-dentistry/cleanings, etc.",
+      "SCAN the entire service page fully before filling anything — read the page title, description, content, and FAQ section",
+      "REMOVE any field that has no data available — never leave a placeholder empty",
+      "NEVER guess or fabricate any information — only use what is found on the site",
+      "@type: always use MedicalWebPage for all individual dental service pages",
+      "name: use the exact meta title of the service page — check page source or SEO settings",
+      "description: use the exact meta description of the service page — check page source or SEO settings",
+      "url: use the exact service page URL — no trailing slash unless the site uses one consistently",
+      "@id: always append #webpage to the service page URL",
+      "about.@id: always point back to the homepage dentist entity by appending /#dentist to the homepage URL",
+      "breadcrumb: check the navigation structure carefully — if the service is nested under a parent like /cosmetic-dentistry/teeth-whitening then breadcrumb has 3 items: Home, Cosmetic Dentistry, Teeth Whitening — if the service is directly under /services then breadcrumb has 2 items",
+      "breadcrumb names: use the exact readable names as shown in the navigation or page headings — not the slug",
+      "mainEntityOfPage: always use the same value as the url field",
+      "inLanguage: always set to en unless the site is in another language",
+      "mainEntity FAQs: scan the entire page for any FAQ section, accordion, or question and answer content — include ALL questions and answers found — do not limit to a fixed number",
+      "FAQ question name: copy the exact question text as shown on the page",
+      "FAQ answer text: copy the exact answer text as shown on the page — include full answer not a summary",
+      "If no FAQs exist on the page: remove the entire mainEntity field",
+      "NO PLACEHOLDERS: the final output must have zero placeholders — every field must contain real data or be removed entirely",
+      "VALIDATE: check that all URLs are real and working, breadcrumb structure matches the actual site navigation, and all FAQ content matches what is on the page"
+    ]
+  },
+
+  "@context": "https://schema.org",
+  "@type": "MedicalWebPage",
+  "@id": "{{SERVICE_PAGE_URL}}#webpage",
+  "name": "{{SERVICE_PAGE_META_TITLE}}",
+  "description": "{{SERVICE_PAGE_META_DESCRIPTION}}",
+  "url": "{{SERVICE_PAGE_URL}}",
+  "mainEntityOfPage": "{{SERVICE_PAGE_URL}}",
+  "inLanguage": "en",
+  "about": {
+    "@id": "{{HOMEPAGE_URL}}/#dentist"
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "{{HOMEPAGE_URL}}/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "{{PARENT_SERVICE_CATEGORY_IF_EXISTS}}",
+        "item": "{{PARENT_SERVICE_CATEGORY_URL_IF_EXISTS}}"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "{{SERVICE_NAME}}",
+        "item": "{{SERVICE_PAGE_URL}}"
+      }
+    ]
+  },
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "{{FAQ_QUESTION}}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{{FAQ_ANSWER}}"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "{{FAQ_QUESTION}}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{{FAQ_ANSWER}}"
+      }
+    }
+  ]
+}
+</script>
