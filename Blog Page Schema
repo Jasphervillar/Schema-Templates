@@ -1,0 +1,94 @@
+<script type="application/ld+json">
+{
+  "_INSTRUCTIONS": {
+    "purpose": "Blog listing page schema markup template for dental practices — use this for the main blog page only, not individual blog post pages",
+    "rules": [
+      "USE this template only for the main blog listing page — pages with slugs like /blog, /blogs, /dental-blog, /news",
+      "DO NOT use this template for individual blog post pages",
+      "SCAN the entire blog page fully before filling anything — read all visible featured blog post titles, descriptions, dates, images, and URLs",
+      "REMOVE any field that has no data available — never leave a placeholder empty",
+      "NEVER guess or fabricate any information — only use what is found on the page",
+      "@type: always use Blog for the blog listing page",
+      "@id: always append #webpage to the blog page URL",
+      "name: use the exact meta title of the blog page — check page source or SEO settings",
+      "description: use the exact meta description of the blog page — check page source or SEO settings",
+      "url: use the exact blog page URL — no trailing slash unless the site uses one consistently",
+      "mainEntityOfPage: always use the same value as the url field",
+      "about.@id: always point back to the homepage dentist entity by appending /#dentist to the homepage URL",
+      "hasPart: scan the blog page and include ONLY the blog posts that are visibly featured on the page — do not include posts from other pages or pagination",
+      "hasPart BlogPosting @id: use the blog post URL and append #blogpost",
+      "hasPart headline: use the exact blog post title as shown on the page",
+      "hasPart description: use the exact blog post excerpt or summary shown on the page — if no excerpt is shown use the first sentence of the post",
+      "hasPart datePublished: use the exact date shown on the blog page next to the post — format as YYYY-MM-DD",
+      "hasPart url: use the exact full URL of the blog post",
+      "hasPart image: use the exact featured image URL of the blog post as shown on the page",
+      "hasPart mainEntityOfPage @id: always use the same value as the blog post url",
+      "hasPart author: use the practice name as Organization if no individual author is shown — if an author name is shown use Person",
+      "hasPart publisher name: use the exact practice name",
+      "hasPart publisher logo url: get the exact logo image URL from the site header or footer",
+      "breadcrumb: always has 2 items — position 1 is Home, position 2 is the blog page name and URL",
+      "breadcrumb name: use the exact page name as shown in navigation — Blog, Blogs, News, etc.",
+      "inLanguage: always set to en unless the site uses another language",
+      "NO PLACEHOLDERS: the final output must have zero placeholders — every field must contain real data or be removed entirely",
+      "VALIDATE: check that all blog post URLs are real and working, all dates are correctly formatted, all image URLs load correctly, and the publisher logo URL is valid"
+    ]
+  },
+
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "@id": "{{BLOG_PAGE_URL}}#webpage",
+  "name": "{{BLOG_PAGE_META_TITLE}}",
+  "description": "{{BLOG_PAGE_META_DESCRIPTION}}",
+  "url": "{{BLOG_PAGE_URL}}",
+  "mainEntityOfPage": "{{BLOG_PAGE_URL}}",
+  "inLanguage": "en",
+  "about": {
+    "@id": "{{HOMEPAGE_URL}}/#dentist"
+  },
+  "hasPart": [
+    {
+      "@type": "BlogPosting",
+      "@id": "{{BLOG_POST_URL}}#blogpost",
+      "headline": "{{BLOG_POST_TITLE}}",
+      "description": "{{BLOG_POST_EXCERPT}}",
+      "datePublished": "{{YYYY-MM-DD}}",
+      "url": "{{BLOG_POST_URL}}",
+      "image": "{{BLOG_POST_FEATURED_IMAGE_URL}}",
+      "inLanguage": "en",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{BLOG_POST_URL}}"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "{{PRACTICE_NAME}}"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "{{PRACTICE_NAME}}",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "{{LOGO_IMAGE_URL}}"
+        }
+      }
+    }
+  ],
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "{{HOMEPAGE_URL}}/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "{{BLOG_PAGE_NAV_NAME}}",
+        "item": "{{BLOG_PAGE_URL}}"
+      }
+    ]
+  }
+}
+</script>
