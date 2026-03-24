@@ -1,177 +1,66 @@
 <script type="application/ld+json">
 {
   "_INSTRUCTIONS": {
-    "purpose": "Homepage schema markup template for dental practices",
+    "purpose": "Home page schema for a dental practice website",
     "rules": [
-      "SCAN the entire website homepage before filling anything",
-      "REMOVE any field that has no data available — never leave a placeholder empty",
-      "NEVER guess or fabricate any information — only use what is found on the site",
-      "name: use the exact business name as it appears on the website",
-      "description: use the meta description or the first intro paragraph on the homepage",
-      "url: use the exact homepage URL with trailing slash",
-      "telephone: use the exact phone number format found on the site",
-      "email: look for email in footer, contact page, or header — include only if found",
-      "logo.url: use the exact logo image URL found in the page source or header",
-      "medicalSpecialty: always keep as Dentistry for dental practices",
-      "@id: always append /#dentist to the homepage URL",
-      "sameAs: collect ALL links — Google Maps, Facebook, Instagram, Yelp, Healthgrades, Zocdoc, CareCredit, ZocDoc, and any other directory or social media link found anywhere on the site including footer — add as many as found",
-      "areaServed: include the primary city, ALL nearby cities mentioned anywhere on the site, the county, and the state — add as many city entries as needed",
-      "review: include ALL reviews visible on the homepage — add as many review entries as found — do not limit to the number of placeholders in the template",
-      "founder: include ALL doctors mentioned on the homepage or about page — add as many entries as found",
-      "priceRange: use $$ as default for dental practices unless site specifies otherwise",
-      "paymentAccepted: list every insurance plan and payment method mentioned anywhere on the site including footer and insurance section",
-      "aggregateRating.ratingValue: get from Google review widget or review section on homepage",
-      "aggregateRating.reviewCount: get the total number shown on the homepage review section — use the highest total count visible",
-      "review: include ALL reviews visible on the homepage — do not skip any — copy author name and review text exactly as shown",
-      "hasOfferCatalog: include ALL services listed in the navigation menu and homepage service section — add as many Offer items as needed, do not limit to the number of placeholders in the template",
-      "address: copy exact address from the website — check footer, contact page, and Google Maps link",
-      "geo: get exact latitude and longitude from the Google Maps link on the site — never estimate",
-      "openingHoursSpecification: get hours from the footer or contact page — REMOVE any day that is closed, never use 00:00 for closed days",
-      "EXPAND RULE: for any array field like sameAs, areaServed, review, founder, openingHoursSpecification, and hasOfferCatalog — always add as many entries as data exists on the site, never cut short",
-      "NO PLACEHOLDERS: the final output must have zero placeholders — every field must contain real data or be removed entirely",
-      "VALIDATE: before finalizing, check that all URLs are real and working, all phone numbers match, all addresses match Google Maps, geo coordinates match the Google Maps pin"
+      "ALWAYS use minified single-line JSON when pushing to Webflow — no indentation, no line breaks, no whitespace between fields",
+      "The _INSTRUCTIONS block is for AI guidance only — NEVER include it in the pushed sourceCode",
+      "NEVER pretty-print — minified JSON is mandatory to stay under Webflow's 2000 character limit",
+      "@type must always be Dentist",
+      "name: use the exact practice name found on the site",
+      "url: use the exact homepage URL",
+      "logo: use the actual logo image CDN URL found in the site header",
+      "telephone: use the exact phone number found on the site, formatted as +1XXXXXXXXXX",
+      "email: use the contact email found on the site",
+      "address: use the exact street address, city, state, zip found on the site",
+      "geo: use the actual GPS coordinates matching the address on Google Maps",
+      "openingHoursSpecification: include ALL days and hours found on the site — never skip any",
+      "aggregateRating: use the actual rating value and review count found on the site",
+      "hasOfferCatalog: include ALL services listed on the site — never cut the list short",
+      "NO PLACEHOLDERS: every field must contain real data or be removed — zero placeholders in final output"
     ]
   },
-
   "@context": "https://schema.org",
-  "@type": ["Dentist", "LocalBusiness", "MedicalBusiness"],
-  "@id": "{{SITE_URL}}/#dentist",
+  "@type": "Dentist",
+  "@id": "{{HOMEPAGE_URL}}/#dentist",
   "name": "{{PRACTICE_NAME}}",
-  "description": "{{META_DESCRIPTION_OR_HOMEPAGE_INTRO}}",
-  "url": "{{SITE_URL}}/",
-  "telephone": "{{PHONE_NUMBER}}",
-  "email": "{{EMAIL_IF_FOUND}}",
-  "logo": {
-    "@type": "ImageObject",
-    "url": "{{LOGO_IMAGE_URL}}"
-  },
-  "medicalSpecialty": ["Dentistry"],
-  "sameAs": [
-    "{{GOOGLE_MAPS_URL}}",
-    "{{FACEBOOK_URL_IF_FOUND}}",
-    "{{INSTAGRAM_URL_IF_FOUND}}",
-    "{{YELP_URL_IF_FOUND}}",
-    "{{HEALTHGRADES_URL_IF_FOUND}}",
-    "{{ZOCDOC_URL_IF_FOUND}}",
-    "{{CARECREDIT_URL_IF_FOUND}}",
-    "{{ANY_OTHER_DIRECTORY_OR_SOCIAL_URL_IF_FOUND}}"
-  ],
+  "url": "{{HOMEPAGE_URL}}",
+  "logo": "{{LOGO_CDN_URL}}",
+  "telephone": "{{PHONE_E164}}",
+  "email": "{{EMAIL}}",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "{{STREET_ADDRESS}}",
+    "streetAddress": "{{STREET}}",
     "addressLocality": "{{CITY}}",
-    "addressRegion": "{{STATE_ABBREVIATION}}",
-    "postalCode": "{{ZIP_CODE}}",
+    "addressRegion": "{{STATE}}",
+    "postalCode": "{{ZIP}}",
     "addressCountry": "US"
   },
   "geo": {
     "@type": "GeoCoordinates",
-    "latitude": "{{LATITUDE_FROM_GOOGLE_MAPS}}",
-    "longitude": "{{LONGITUDE_FROM_GOOGLE_MAPS}}"
+    "latitude": "{{LAT}}",
+    "longitude": "{{LNG}}"
   },
-  "areaServed": [
-    { "@type": "City", "name": "{{PRIMARY_CITY}}" },
-    { "@type": "City", "name": "{{NEARBY_CITY_IF_MENTIONED}}" },
-    { "@type": "AdministrativeArea", "name": "{{COUNTY}}" },
-    { "@type": "State", "name": "{{STATE_FULL_NAME}}" }
-  ],
   "openingHoursSpecification": [
     {
       "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday"],
-      "opens": "{{OPEN_TIME_24HR}}",
-      "closes": "{{CLOSE_TIME_24HR}}"
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Tuesday"],
-      "opens": "{{OPEN_TIME_24HR}}",
-      "closes": "{{CLOSE_TIME_24HR}}"
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Wednesday"],
-      "opens": "{{OPEN_TIME_24HR}}",
-      "closes": "{{CLOSE_TIME_24HR}}"
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Thursday"],
-      "opens": "{{OPEN_TIME_24HR}}",
-      "closes": "{{CLOSE_TIME_24HR}}"
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Friday"],
-      "opens": "{{OPEN_TIME_24HR}}",
-      "closes": "{{CLOSE_TIME_24HR}}"
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Saturday"],
-      "opens": "{{OPEN_TIME_24HR}}",
-      "closes": "{{CLOSE_TIME_24HR}}"
+      "dayOfWeek": ["{{DAY_1}}"],
+      "opens": "{{OPEN_TIME}}",
+      "closes": "{{CLOSE_TIME}}"
     }
   ],
-  "founder": [
-    { "@type": "Person", "name": "{{DOCTOR_NAME_1}}" },
-    { "@type": "Person", "name": "{{DOCTOR_NAME_2}}" }
-  ],
-  "priceRange": "$$",
-  "paymentAccepted": "{{LIST_ALL_INSURANCE_PLANS_AND_PAYMENT_METHODS_FOUND_ON_SITE}}",
   "aggregateRating": {
     "@type": "AggregateRating",
-    "ratingValue": "{{RATING_VALUE}}",
-    "reviewCount": "{{TOTAL_REVIEW_COUNT}}"
+    "ratingValue": "{{RATING}}",
+    "reviewCount": "{{REVIEW_COUNT}}",
+    "bestRating": "5"
   },
-  "review": [
-    {
-      "@type": "Review",
-      "author": { "@type": "Person", "name": "{{REVIEWER_NAME}}" },
-      "reviewRating": { "@type": "Rating", "ratingValue": "{{RATING}}" },
-      "reviewBody": "{{REVIEW_TEXT}}"
-    },
-    {
-      "@type": "Review",
-      "author": { "@type": "Person", "name": "{{REVIEWER_NAME}}" },
-      "reviewRating": { "@type": "Rating", "ratingValue": "{{RATING}}" },
-      "reviewBody": "{{REVIEW_TEXT}}"
-    },
-    {
-      "@type": "Review",
-      "author": { "@type": "Person", "name": "{{REVIEWER_NAME}}" },
-      "reviewRating": { "@type": "Rating", "ratingValue": "{{RATING}}" },
-      "reviewBody": "{{REVIEW_TEXT}}"
-    }
-  ],
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Dental Services",
     "itemListElement": [
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "{{SERVICE_NAME}}",
-          "description": "{{SERVICE_DESCRIPTION}}"
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "{{SERVICE_NAME}}",
-          "description": "{{SERVICE_DESCRIPTION}}"
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "{{SERVICE_NAME}}",
-          "description": "{{SERVICE_DESCRIPTION}}"
-        }
-      }
+      {"@type": "Offer","itemOffered": {"@type": "Service","name": "{{SERVICE_1}}"}},
+      {"@type": "Offer","itemOffered": {"@type": "Service","name": "{{SERVICE_2}}"}}
     ]
   }
 }
