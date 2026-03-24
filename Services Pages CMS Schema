@@ -1,0 +1,178 @@
+<script type="application/ld+json" id="service-schema"></script>
+<script>
+(function () {
+
+  // =============================================
+  // INSTRUCTIONS
+  // =============================================
+  // USE this template on the Services CMS collection template page in Webflow
+  // Replace each CMS field variable below using the purple "Add Field" button
+  // inside the Embed element in Webflow Designer
+  //
+  // DYNAMIC FIELDS — replace with Webflow CMS collection field variables:
+  //   slug          → Services collection Slug field
+  //   name          → Services collection Name field
+  //   desc          → Services collection Meta Description field
+  //   faq1q         → Services collection FAQ Section - Question 1 field
+  //   faq1a         → Services collection FAQ Section - Answer 1 field
+  //   faq2q         → Services collection FAQ Section - Question 2 field
+  //   faq2a         → Services collection FAQ Section - Answer 2 field
+  //   faq3q         → Services collection FAQ Section - Question 3 field
+  //   faq3a         → Services collection FAQ Section - Answer 3 field
+  //   faq4q         → Services collection FAQ Section - Question 4 field
+  //   faq4a         → Services collection FAQ Section - Answer 4 field
+  //   faq5q         → Services collection FAQ Section - Question 5 field
+  //   faq5a         → Services collection FAQ Section - Answer 5 field
+  //
+  // STATIC FIELDS — replace once manually for each site:
+  //   SITE_URL      → Homepage URL e.g. https://www.site.com
+  //   PRACTICE_NAME → Practice name e.g. iSmile Dental Care
+  //   SERVICES_BASE → Base URL for services e.g. https://www.site.com/services
+  //
+  // NO FAQ SLUGS — add category page slugs that should NOT get FAQ schema
+  // These are the category pages like general-dentistry, cosmetic-dentistry etc.
+  // =============================================
+
+  const slug = "SLUG";
+  const name = "NAME";
+  const desc = "META DESCRIPTION";
+
+  const faq1q = "FAQ SECTION - QUESTION 1";
+  const faq1a = "FAQS SECTION - ANSWER 1";
+  const faq2q = "FAQ SECTION - QUESTION 2";
+  const faq2a = "FAQS SECTION - ANSWER 2";
+  const faq3q = "FAQ SECTION - QUESTION 3";
+  const faq3a = "FAQS SECTION - ANSWER 3";
+  const faq4q = "FAQ SECTION - QUESTION 4";
+  const faq4a = "FAQS SECTION - ANSWER 4";
+  const faq5q = "FAQ SECTION - QUESTION 5";
+  const faq5a = "FAQS SECTION - ANSWER 5";
+
+  // --- STATIC — replace once per site ---
+  // SITE_URL     → Homepage URL e.g. https://www.yoursite.com
+  // PRACTICE_NAME → Exact practice name e.g. iSmile Dental Care
+  // SERVICES_BASE → Full base URL for services e.g. https://www.yoursite.com/services
+  // CITY_NAME    → Primary city the practice serves e.g. Fairfax
+  const SITE_URL = "SITE_URL";
+  const PRACTICE_NAME = "PRACTICE_NAME";
+  const SERVICES_BASE = "SERVICES_BASE";
+  const CITY_NAME = "CITY_NAME";
+
+  // --- Category page slugs that should NOT include FAQ schema ---
+  // Add the slugs of all category pages here — these are pages like
+  // general-dentistry, cosmetic-dentistry, restorative-dentistry etc.
+  // Individual service pages like teeth-whitening will automatically get FAQs
+  const noFaqSlugs = [
+    "CATEGORY_SLUG_1",
+    "CATEGORY_SLUG_2",
+    "CATEGORY_SLUG_3",
+    "CATEGORY_SLUG_4"
+  ];
+
+  const includeFaq = !noFaqSlugs.includes(slug);
+
+  const websiteId   = `${SITE_URL}/#website`;
+  const dentistId   = `${SITE_URL}/#dentist`;
+  const pageId      = `${SERVICES_BASE}/${slug}#webpage`;
+  const pageUrl     = `${SERVICES_BASE}/${slug}`;
+  const serviceId   = `${SERVICES_BASE}/${slug}#service`;
+  const faqId       = `${SERVICES_BASE}/${slug}#faq`;
+  const breadcrumbsId = `${SERVICES_BASE}/${slug}#breadcrumbs`;
+
+  const graph = [
+    {
+      "@type": "WebSite",
+      "@id": websiteId,
+      "url": `${SITE_URL}/`,
+      "name": PRACTICE_NAME,
+      "inLanguage": "en"
+    },
+    {
+      "@type": "MedicalWebPage",
+      "@id": pageId,
+      "url": pageUrl,
+      "name": name,
+      "description": desc,
+      "inLanguage": "en",
+      "isPartOf": { "@id": websiteId },
+      "about": { "@id": dentistId },
+      "mainEntity": { "@id": serviceId }
+    },
+    {
+      "@type": "Service",
+      "@id": serviceId,
+      "name": name,
+      "description": desc,
+      "provider": { "@id": dentistId },
+      "areaServed": [{ "@type": "City", "name": CITY_NAME }]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": breadcrumbsId,
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": `${SITE_URL}/`
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": `${SERVICES_BASE}`
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": name,
+          "item": pageUrl
+        }
+      ]
+    }
+  ];
+
+  if (includeFaq) {
+    graph.push({
+      "@type": "FAQPage",
+      "@id": faqId,
+      "isPartOf": { "@id": pageId },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": faq1q,
+          "acceptedAnswer": { "@type": "Answer", "text": faq1a }
+        },
+        {
+          "@type": "Question",
+          "name": faq2q,
+          "acceptedAnswer": { "@type": "Answer", "text": faq2a }
+        },
+        {
+          "@type": "Question",
+          "name": faq3q,
+          "acceptedAnswer": { "@type": "Answer", "text": faq3a }
+        },
+        {
+          "@type": "Question",
+          "name": faq4q,
+          "acceptedAnswer": { "@type": "Answer", "text": faq4a }
+        },
+        {
+          "@type": "Question",
+          "name": faq5q,
+          "acceptedAnswer": { "@type": "Answer", "text": faq5a }
+        }
+      ]
+    });
+  }
+
+  const schema = {
+    "@context": "https://schema.org",
+    "@graph": graph
+  };
+
+  document.getElementById("service-schema").textContent = JSON.stringify(schema);
+
+})();
+</script>
