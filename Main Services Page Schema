@@ -1,0 +1,101 @@
+<script type="application/ld+json">
+{
+  "_INSTRUCTIONS": {
+    "purpose": "Services main page schema markup template for dental practices — use this for the main services listing page only, not individual service pages",
+    "rules": [
+      "USE this template only for the main services page — pages with slugs like /services, /our-services, /dental-services",
+      "SCAN the entire services page before filling anything — read all service names, URLs, and page content",
+      "REMOVE any field that has no data available — never leave a placeholder empty",
+      "NEVER guess or fabricate any information — only use what is found on the site",
+      "WebSite block: always include this — use the exact practice name and homepage URL",
+      "CollectionPage block: use the exact meta title and meta description of the services page",
+      "CollectionPage url and @id: use the exact services page URL — append #webpage to the @id",
+      "CollectionPage isPartOf: always point to the homepage #website entity",
+      "CollectionPage about: always point to the homepage #dentist entity",
+      "CollectionPage mainEntity: always point to the services page #itemlist entity",
+      "ItemList block: scan the services page and navigation for ALL visible services — include every single service listed",
+      "ItemList numberOfItems: count ALL services found and set the exact number — never hardcode a number without counting",
+      "ItemList itemListElement: for each service include position number, exact service name as shown on the page, and the exact URL of that service page",
+      "ItemList URLs: check the navigation menu and service cards for the correct individual service page URLs — never guess the slug",
+      "BreadcrumbList: always has 2 items — position 1 is Home with homepage URL, position 2 is the services page name and URL",
+      "breadcrumb name: use the exact page name as it appears in the navigation menu",
+      "inLanguage: always set to en unless the site is in another language",
+      "NO PLACEHOLDERS: the final output must have zero placeholders — every field must contain real data or be removed entirely",
+      "VALIDATE: check that all service URLs are real and working, numberOfItems matches the actual count of services, and all @id references are correct"
+    ]
+  },
+
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "{{HOMEPAGE_URL}}/#website",
+      "url": "{{HOMEPAGE_URL}}/",
+      "name": "{{PRACTICE_NAME}}",
+      "inLanguage": "en"
+    },
+    {
+      "@type": "CollectionPage",
+      "@id": "{{SERVICES_PAGE_URL}}#webpage",
+      "url": "{{SERVICES_PAGE_URL}}",
+      "name": "{{SERVICES_PAGE_META_TITLE}}",
+      "description": "{{SERVICES_PAGE_META_DESCRIPTION}}",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "{{HOMEPAGE_URL}}/#website"
+      },
+      "about": {
+        "@id": "{{HOMEPAGE_URL}}/#dentist"
+      },
+      "mainEntity": {
+        "@id": "{{SERVICES_PAGE_URL}}#itemlist"
+      }
+    },
+    {
+      "@type": "ItemList",
+      "@id": "{{SERVICES_PAGE_URL}}#itemlist",
+      "name": "{{SERVICES_LIST_NAME}}",
+      "itemListOrder": "https://schema.org/ItemListUnordered",
+      "numberOfItems": "{{TOTAL_NUMBER_OF_SERVICES}}",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "{{SERVICE_NAME}}",
+          "url": "{{SERVICE_PAGE_URL}}"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "{{SERVICE_NAME}}",
+          "url": "{{SERVICE_PAGE_URL}}"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "{{SERVICE_NAME}}",
+          "url": "{{SERVICE_PAGE_URL}}"
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "{{SERVICES_PAGE_URL}}#breadcrumbs",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "{{HOMEPAGE_URL}}/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "{{SERVICES_PAGE_NAV_NAME}}",
+          "item": "{{SERVICES_PAGE_URL}}"
+        }
+      ]
+    }
+  ]
+}
+</script>
