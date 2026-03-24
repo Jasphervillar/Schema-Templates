@@ -1,0 +1,51 @@
+<script type="application/ld+json">
+{
+  "_INSTRUCTIONS": {
+    "purpose": "Blog CMS template schema for individual blog post pages — this goes on the Blog CMS template page in Webflow, not on static pages",
+    "rules": [
+      "USE this template only for the Blog CMS collection template page in Webflow",
+      "ALL capitalized dynamic fields must be replaced with the actual Webflow CMS collection field variable using the embed element on the page",
+      "DO NOT hardcode any blog post content — every dynamic field must pull from the CMS collection",
+      "SITE_URL: replace with the actual homepage URL of the practice — this is static and does not change per post",
+      "PRACTICE_NAME: replace with the actual practice name — this is static and does not change per post",
+      "LOGO_URL: replace with the actual logo image URL — this is static and does not change per post",
+      "POST_BASE_URL: replace with the actual base URL path for blog posts — e.g. https://www.site.com/post or https://www.site.com/blog",
+      "NAME: replace with the Webflow CMS field variable for the blog post title — usually called Name or Title in the collection",
+      "POST SUMMARY: replace with the Webflow CMS field variable for the blog post summary or excerpt field",
+      "SLUG: replace with the Webflow CMS field variable for the blog post slug — appears twice in the schema, both in url and mainEntityOfPage @id",
+      "MAIN IMAGE: replace with the Webflow CMS field variable for the featured image or main image field",
+      "DATE POST: replace with the Webflow CMS field variable for the published date field — format must be YYYY-MM-DD",
+      "UPDATED ON: replace with the Webflow CMS field variable for the last updated date field — format must be YYYY-MM-DD",
+      "How to add in Webflow: go to the Blog CMS template page, add an Embed element in the head, paste this schema, then use the purple Add Field button inside the embed to insert the correct CMS field for each dynamic value",
+      "VALIDATE: check that all static URLs are correct, all CMS field variables are mapped to the right fields, and date fields are formatted correctly"
+    ]
+  },
+
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "NAME",
+  "description": "POST SUMMARY",
+  "url": "POST_BASE_URL/SLUG",
+  "image": "MAIN IMAGE",
+  "datePublished": "DATE POST",
+  "dateModified": "UPDATED ON",
+  "inLanguage": "en",
+  "author": {
+    "@type": "Organization",
+    "name": "PRACTICE_NAME",
+    "url": "SITE_URL"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "PRACTICE_NAME",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "LOGO_URL"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "POST_BASE_URL/SLUG"
+  }
+}
+</script>
